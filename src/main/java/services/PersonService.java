@@ -3,7 +3,7 @@ package services;
     import data.People;
 import data.Person;
 import data.PostalAddress;
-import es.uji.www.GeneradorDatosINE;
+import es.uji.belfern.generador.GeneradorDatosINE;
 import store.PersonJPA;
 import store.PersonStorage;
 

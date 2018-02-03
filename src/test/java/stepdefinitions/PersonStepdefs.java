@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class PersonStepdefs {
     private WebDriver webDriver;
-    private static final String pathToChromeDriver = "/home/oscar/Oscar/Docencia/Curso2016-2017/Taller/chromedriver";
+    private static final String pathToChromeDriver = "/home/oscar/Oscar/Software/chromedriver";
 
     @Before // Cuidado con esta anotación, está en el paquete cucumber, no junit
     public void setUp() {
@@ -49,16 +49,19 @@ public class PersonStepdefs {
 
     @When("^I provide \"([^\"]*)\" for the name$")
     public void i_provide_for_the_name(String name) throws Throwable {
+        webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='name']")).sendKeys(name);
     }
 
     @And("^I provide \"([^\"]*)\" for the surname$")
     public void i_provide_for_the_surname(String surname) throws Throwable {
+        webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='surname']")).sendKeys(surname);
     }
 
     @And("^I provide \"([^\"]*)\" for the nif$")
     public void i_provide_for_the_nif(Integer nif) throws Throwable {
+        webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='nif']")).sendKeys(""+nif);
     }
 
