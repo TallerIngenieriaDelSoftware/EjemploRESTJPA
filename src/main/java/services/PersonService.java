@@ -1,11 +1,10 @@
 package services;
 
-    import data.People;
+import data.People;
 import data.Person;
 import data.PostalAddress;
-import es.uji.belfern.generador.GeneradorDatosINE;
+import es.uji.www.GeneradorDatosINE;
 import store.PersonJPA;
-import store.PersonStorage;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -28,7 +27,7 @@ public class PersonService {
     @Produces({"application/xml", "application/json"})
     public Response create(Person person) {
         Person retrievedPerson = personJPA.retrieve(person.getNif());
-        if(retrievedPerson == PersonJPA.NOT_FOUND) {
+        if (retrievedPerson == PersonJPA.NOT_FOUND) {
             personJPA.create(person);
             retrievedPerson = personJPA.retrieve(person.getNif());
             return Response
@@ -49,9 +48,9 @@ public class PersonService {
         Person person = personJPA.retrieve(nif);
         if (person != PersonJPA.NOT_FOUND)
             return Response
-                .status(Response.Status.OK)
-                .entity(person)
-                .build();
+                    .status(Response.Status.OK)
+                    .entity(person)
+                    .build();
         else return Response
                 .status(Response.Status.NOT_FOUND)
                 .build();
@@ -62,21 +61,21 @@ public class PersonService {
     @Path("{nif}")
     public Response update(@PathParam("nif") String nif, Person person) {
         Person retrievedPerson = personJPA.retrieve(nif);
-        if(retrievedPerson != null) {
+        if (retrievedPerson != null) {
             personJPA.update(person);
             return Response
                     .status(Response.Status.NO_CONTENT)
                     .build();
         } else return Response
-                    .status(Response.Status.NOT_FOUND)
-                    .build();
+                .status(Response.Status.NOT_FOUND)
+                .build();
     }
 
     @DELETE
     @Path("{nif}")
     public Response delete(@PathParam("nif") String nif) {
         Person person = personJPA.retrieve(nif);
-        if(person != null) {
+        if (person != null) {
             personJPA.delete(nif);
             return Response
                     .status(Response.Status.NO_CONTENT)
@@ -86,7 +85,7 @@ public class PersonService {
                 .build();
     }
 
-//    Este es un método de ayuda, no forma parte del API
+    //    Este es un método de ayuda, no forma parte del API
     @POST
     @Path("generate/random")
     @Produces({"application/xml", "application/json"})
@@ -94,7 +93,7 @@ public class PersonService {
         String name, surname, province;
         PostalAddress address;
         Person person;
-        for(int i = 0; i < quantity; i++) {
+        for (int i = 0; i < quantity; i++) {
             province = generador.getProvincia();
             address = new PostalAddress(generador.getPoblacion(province), province);
             person = new Person(generador.getNombre(), generador.getApellido(), generador.getNIF(), address);
