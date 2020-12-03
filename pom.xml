@@ -108,7 +108,7 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.4.26.v20200117</version>
+            <version>[9.4.33,)</version>
         </dependency>
 
         <!--El mapeador objeto relacional-->
