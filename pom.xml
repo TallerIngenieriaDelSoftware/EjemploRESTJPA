@@ -13,6 +13,8 @@
         <java.version>1.8</java.version>
         <jersey.version>2.26</jersey.version>
         <jaxb.version>2.3.0</jaxb.version>
+        <junit.jupiter.version>5.6.0</junit.jupiter.version>
+        <junit.platform.version>1.6.0</junit.platform.version>
     </properties>
 
     <repositories>
@@ -134,10 +136,25 @@
         </dependency>
 
         <!--Para las pruebas unitarias-->
+<!--
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+-->
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
