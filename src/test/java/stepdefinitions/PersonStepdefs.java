@@ -13,7 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 public class PersonStepdefs {
     private WebDriver webDriver;
@@ -24,8 +25,7 @@ public class PersonStepdefs {
         System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
         webDriver = new ChromeDriver();
         // Wait before getting WebElements
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
 
     @After // Cuidado con esta anotación, está en el paquete cucumber, no junit
@@ -51,18 +51,21 @@ public class PersonStepdefs {
     public void i_provide_for_the_name(String name) throws Throwable {
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='name']")).sendKeys(name);
+        Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
 
     @And("^I provide \"([^\"]*)\" for the surname$")
     public void i_provide_for_the_surname(String surname) throws Throwable {
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='surname']")).sendKeys(surname);
+        Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
 
     @And("^I provide \"([^\"]*)\" for the nif$")
     public void i_provide_for_the_nif(Integer nif) throws Throwable {
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         webDriver.findElement(By.xpath("//input[@ng-model='nif']")).sendKeys(""+nif);
+        Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
 
     @And("^I click the New button$")
@@ -72,6 +75,7 @@ public class PersonStepdefs {
 
     @Then("^The person with nif \"([^\"]*)\" is created in the Agenda$")
     public void the_person_with_nif_is_created_in_the_Agenda(String nif) throws Throwable {
+        Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
         assertNotNull(webDriver.findElement(By.id(nif)));
     }
 }
